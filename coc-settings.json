@@ -1,0 +1,50 @@
+{
+  "diagnostic.errorSign": "❗️",
+  "diagnostic.warningSign": "⚠️ ",
+  "diagnostic.infoSign": "⚠️ ",
+  "javascript.validate.enable": true,
+  "coc.preferences.formatOnSaveFiletypes": ["rescript", "json", "javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "coc.preferences.formatOnType": true,
+  "eslint.autoFixOnsave": true,
+  "tsserver.enableJavascript": true,
+  "tsserver.enableTypescript": false,
+  "tsserver.formatOnType": true,
+  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
+  "elixirLS.mixEnv": "dev",
+  "elixirLS.mixTarget": "test",
+  "languageserver": {
+    "ocaml-lsp": {
+      "command": "esy",
+      "args": ["sh", "-c", "ocamllsp"],
+      "filetypes": ["ocaml", "reason"]
+    },
+    "rescript": {
+      "enable": true,
+      "module": "~/.config/nvim/plugged/vim-rescript/server/out/server.js",
+      "args": ["--node-ipc"],
+      "filetypes": ["rescript"],
+      "rootPatterns": ["bsconfig.json"]
+    },
+    "cls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cpp",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    }
+  }
+}
