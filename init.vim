@@ -60,8 +60,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'shime/vim-livedown'
-Plug 'andweeb/presence.nvim'
 Plug 'elixir-editors/vim-elixir'
+Plug 'raichoo/haskell-vim'
+Plug 'junegunn/vim-easy-align'
 " ----------------------------------
 
 call plug#end()
@@ -251,6 +252,12 @@ nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 " -------------------------------------------------
 " Function to show diagnostics auto
 
@@ -272,6 +279,32 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsSnippetsDir = "/.config/nvim/ultisnips"
 let g:UltiSnipsSnippetDirectories = ["UltiSnips", "ultisnips"]
+
+" -------------------------------------------------
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+" use <c-space>for trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" use <c-space>for trigger completion
+inoremap <silent><expr> <NUL> coc#refresh()
+
+" Use <Tab> and <S-Tab> to navigate the completion list:
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+"--------------------------------------------------
 
 " -- Fonts & Icons --------------------------------
 set encoding=utf8
@@ -325,7 +358,7 @@ set nofoldenable
 set mouse=a
 set completeopt+=preview
 set expandtab
-set tabstop=2
-set softtabstop=2
+set tabstop=4
+set softtabstop=4
 set number
 set ignorecase
